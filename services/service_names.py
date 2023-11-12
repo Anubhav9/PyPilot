@@ -16,3 +16,4 @@ if(env=="production"):
 
 elif(env=="staging" or env=="local"):
     SEND_GRID_URL=""
+    
