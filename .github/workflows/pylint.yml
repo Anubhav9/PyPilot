@@ -21,3 +21,11 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
+    - name: Check pylint score
+      run: |
+        score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint_output.txt)
+        echo "Pylint score: $score"
+        if (( $(echo "$score < 7.0" | bc -l) )); then
+          echo "Pylint score is below 7.0, failing the check."
+          exit 1
+        fi
