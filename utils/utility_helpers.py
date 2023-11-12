@@ -18,3 +18,6 @@ def is_valid_json(suspect_string):
         return False
     
         
+def replace_placeholder(constant_name,placeholder,value):
+    replace_string=constant_name.replace(placeholder,value)
+    return replace_string
