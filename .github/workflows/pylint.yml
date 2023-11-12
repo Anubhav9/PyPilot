@@ -8,24 +8,29 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]
+
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pylint
+
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint $(git ls-files '*.py') | tee pylint_output.txt
+
     - name: Check pylint score
       run: |
         score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint_output.txt)
         echo "Pylint score: $score"
-        if (( $(echo "$score < 7.0" | bc -l) )); then
+        if [ $(echo "$score < 7.0" | bc -l) -eq 1 ]; then
           echo "Pylint score is below 7.0, failing the check."
           exit 1
         fi
