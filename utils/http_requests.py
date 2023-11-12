@@ -1,5 +1,5 @@
 """
-"This module provides utilities to invoke various types of RESTful requests, including GET, POST, PATCH, and PUT."
+""Utilities for RESTful requests: GET, POST, PATCH, PUT."
 
 Author: Anubhav Sanyal
 Creation Date: 12/11/2023

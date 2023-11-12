@@ -17,12 +17,11 @@ def generate_url_for_request(service_name,end_point,is_secured_protocol):
     end_point (string): End Point that we want to invoke
     is_secured (boolean): Parameter to set if we want to invoke http or https
     """
-    if(is_secured_protocol==True):
+    if is_secured_protocol==True:
         generated_url=HTTPS_PROTOCOL+service_name+SLASH+end_point
     else:
         generated_url=HTTP_PROTOCOL+service_name+SLASH+end_point
     return generated_url
-
 
 def is_valid_json(suspect_string):
     """
@@ -36,12 +35,10 @@ def is_valid_json(suspect_string):
         return True
     except json.JSONDecodeError:
         return False
-    
-        
-
+           
 def replace_placeholder(constant_name,placeholder,value):
     """
-    Utility Method to replace values at run time. Usually in api calls where methods are placeholders.
+    Utility Method to replace placeholder values at run time.
     Parameters
     constant_name (string): The constant string where placeholder has been stored
     placeholder (string): Passing the placeholder value
