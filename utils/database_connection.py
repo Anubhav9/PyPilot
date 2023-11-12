@@ -7,11 +7,11 @@ Creation Date: 12/11/2023
 
 import logging
 import os
-from mysql.connector import pooling
 import json
+from mysql.connector import pooling
 
-connection=None
-dbconfig_global=None
+CONNECTION=None
+DBCONFIG_GLOBAL=None
 
 def establish_pool_connection(dbconfig_json,service_database_name):
     """
@@ -28,6 +28,7 @@ def establish_pool_connection(dbconfig_json,service_database_name):
         return connection
     except Exception as e:
         logging.error("Unable to establish pool connection due to error %s",e)
+        return None
 
 
 def execute_query(sql_query,params=None):
@@ -39,9 +40,9 @@ def execute_query(sql_query,params=None):
     params : Parameters passed to the query (optional)
     """
     try:
-        cursor=connection.cursor()
+        cursor=CONNECTION.cursor()
         cursor.execute(sql_query,params)
-        connection.commit()
+        CONNECTION.commit()
     except Exception as e:
         logging.error("Unable to connect to MySQL DB with error as %s",e)
 
@@ -57,4 +58,4 @@ if env=="local":
     except Exception as e:
         logging.error("Unable to open file because of Error as %s",e)
 
-connection=establish_pool_connection(dbconfig_global,"SENDGRID_SQL_DB")
+CONNECTION=establish_pool_connection(DBCONFIG_GLOBAL,"SENDGRID_SQL_DB")
