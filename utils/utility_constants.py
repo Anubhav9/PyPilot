@@ -1,0 +1,3 @@
+HTTPS_PROTOCOL="https://"
+HTTP_PROTOCOL="http://"
+SLASH="/"
