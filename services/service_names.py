@@ -1,4 +1,9 @@
-"""All Services would be onboarded here"""
+"""
+All Services would be onboarded here. The URLs will be different based on different envs
+
+Author: Anubhav Sanyal
+Creation Date:12/11/2023
+"""
 
 import os
 

@@ -1,3 +1,10 @@
+"""
+Utility Helper Module which provides misc kind of helper functions which are very commonly used
+
+Author: Anubhav Sanyal
+Creation Date: 12/11/2023
+"""
+
 import json
 from utility_constants import *
 
@@ -12,10 +19,8 @@ def generate_url_for_request(service_name,end_point,is_secured_protocol):
     """
     if(is_secured_protocol==True):
         generated_url=HTTPS_PROTOCOL+service_name+SLASH+end_point
-        
     else:
         generated_url=HTTP_PROTOCOL+service_name+SLASH+end_point
-    
     return generated_url
 
 
@@ -37,7 +42,6 @@ def is_valid_json(suspect_string):
 def replace_placeholder(constant_name,placeholder,value):
     """
     Utility Method to replace values at run time. Usually in api calls where methods are placeholders.
-
     Parameters
     constant_name (string): The constant string where placeholder has been stored
     placeholder (string): Passing the placeholder value
