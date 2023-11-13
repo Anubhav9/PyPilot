@@ -16,9 +16,9 @@ def test_send_email_to_recipient_with_correct_key():
     """
     Happy Flow to Check if email is being sent correctly when key is being correctly passed
     """
-    SEND_GRID_API_KEY_CORRECT=os.environ.get("SENDGRID_API_KEY_CORRECT","")
-    COMPLETE_KEY="Bearer "+SEND_GRID_API_KEY_CORRECT
-    headers={"Content-Type":"application/json","Authorization":COMPLETE_KEY}
+    send_grid_api_key_correct=os.environ.get("SENDGRID_API_KEY_CORRECT","")
+    complete_key="Bearer "+send_grid_api_key_correct
+    headers={"Content-Type":"application/json","Authorization":complete_key}
     ##HardCoding Body for as of now
     body={"personalizations":[{"to":[{"email":"anubhavsanyal9@gmail.com"}]}],"from":{"email":"princebest3@rediffmail.com"},"subject":"Hello, World!","content":[{"type":"text/plain","value":"Heya!"}]}
     body=json.dumps(body)
@@ -31,9 +31,9 @@ def test_send_email_to_recipient_with_incorrect_key():
     """
     Negative Scenario to check unauthorised error when wrong key is passed
     """
-    SEND_GRID_API_KEY_INCORRECT=os.environ.get("SENDGRID_API_KEY_INCORRECT","")
-    COMPLETE_KEY="Bearer "+SEND_GRID_API_KEY_INCORRECT
-    headers={"Content-Type":"application/json","Authorization":COMPLETE_KEY}
+    send_grid_api_key_incorrect=os.environ.get("SENDGRID_API_KEY_INCORRECT","")
+    complete_key="Bearer "+send_grid_api_key_incorrect
+    headers={"Content-Type":"application/json","Authorization":complete_key}
     ##HardCoding Body for as of now
     body={"personalizations":[{"to":[{"email":"anubhavsanyal9@gmail.com"}]}],"from":{"email":"princebest3@rediffmail.com"},"subject":"Hello, World!","content":[{"type":"text/plain","value":"Heya!"}]}
     body=json.dumps(body)
