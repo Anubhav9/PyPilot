@@ -19,10 +19,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install Allure
+    - name: Install Wget and Allure
       run: |
         sudo apt-get update
-        sudo apt-get install -y allure
+        sudo apt-get install -y wget
+        wget -qO - https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.3/allure-commandline-2.17.3.tgz | sudo tar -zx -C /opt/
+        echo "PATH=$PATH:/opt/allure-commandline-2.17.3/bin" >> $GITHUB_ENV
 
     - name: Clear Allure and HTML Report Directories
       run: |
@@ -50,4 +52,3 @@ jobs:
       run: |
         TIMESTAMP=$(date +%Y%m%d%H%M%S)
         aws s3 cp reports/html s3://pypilot/${TIMESTAMP}/ --recursive
-        
