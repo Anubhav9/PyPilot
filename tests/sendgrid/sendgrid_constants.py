@@ -1,0 +1,1 @@
+EMAIL_RECEIVER="anubhavsanyal9@gmail.com"

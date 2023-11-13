@@ -1,0 +1,1 @@
+[{"uid":"ed4f369ae94ce966","name":"test_send_email_to_recipient_with_incorrect_key","time":{"start":1699879767499,"stop":1699879768235,"duration":736},"status":"passed","severity":"normal"},{"uid":"bd2bc3545dfaad7","name":"test_send_email_to_recipient_with_correct_key","time":{"start":1699879766661,"stop":1699879767498,"duration":837},"status":"passed","severity":"normal"}]
