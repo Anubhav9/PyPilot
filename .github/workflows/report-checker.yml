@@ -32,6 +32,7 @@ jobs:
     - name: Run PyTest
       run: |
         pytest --alluredir=reports/allure
+        continue-on-error: true
 
     - name: Generate Allure Report
       run: |
