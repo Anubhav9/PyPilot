@@ -19,13 +19,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install Allure
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y wget
-        wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.3/allure-commandline-2.17.3.tgz
-        sudo tar -zxvf allure-commandline-2.17.3.tgz -C /opt/
-        echo "PATH=$PATH:/opt/allure-commandline-2.17.3/bin" >> $GITHUB_ENV
+    - name: Set up Allure
+      uses: simple-elf/allure-report-action@v1.0.1
+      with:
+        allure_version: '2.17.3'
 
     - name: Clear Allure and HTML Report Directories
       run: |
@@ -40,7 +37,7 @@ jobs:
       continue-on-error: true
 
     - name: Generate Allure Report
-      run: /opt/allure-commandline-2.17.3/bin/allure generate reports/allure -o reports/html
+      run: allure generate reports/allure -o reports/html
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
