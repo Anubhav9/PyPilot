@@ -48,5 +48,5 @@ jobs:
     - name: Upload to S3
       run: |
         TIMESTAMP=$(date +%Y%m%d%H%M%S)
-        aws s3 cp reports/html s3://pypilot/${TIMESTAMP}/ --recursive
+        aws s3 cp reports/html s3://pypilot/${TIMESTAMP}/ --recursive --acl public-read
         
