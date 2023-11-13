@@ -20,7 +20,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Set up Allure
-      uses: simple-elf/allure-report-action@v1.0.1
+      uses: simple-elf/allure-report-action@master
       with:
         allure_version: '2.17.3'
 
