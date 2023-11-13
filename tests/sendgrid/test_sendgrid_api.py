@@ -13,6 +13,9 @@ from services.service_endpoints import sendgrid_endpoints
 from services import service_names
 import sendgrid_constants
 def test_send_email_to_recipient_with_correct_key():
+    """
+    Happy Flow to Check if email is being sent correctly when key is being correctly passed
+    """
     SEND_GRID_API_KEY_CORRECT=os.environ.get("SENDGRID_API_KEY_CORRECT","")
     COMPLETE_KEY="Bearer "+SEND_GRID_API_KEY_CORRECT
     headers={"Content-Type":"application/json","Authorization":COMPLETE_KEY}
@@ -24,8 +27,10 @@ def test_send_email_to_recipient_with_correct_key():
     status_code=response.status_code
     assert status_code==202,f"Expected response was 201, got different status code"
 
-
 def test_send_email_to_recipient_with_incorrect_key():
+    """
+    Negative Scenario to check unauthorised error when wrong key is passed
+    """
     SEND_GRID_API_KEY_INCORRECT=os.environ.get("SENDGRID_API_KEY_INCORRECT","")
     COMPLETE_KEY="Bearer "+SEND_GRID_API_KEY_INCORRECT
     headers={"Content-Type":"application/json","Authorization":COMPLETE_KEY}
