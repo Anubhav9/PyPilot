@@ -24,6 +24,7 @@ def test_send_email_to_recipient_with_correct_key():
     status_code=response.status_code
     assert status_code==202,f"Expected response was 201, got different status code"
 
+
 def test_send_email_to_recipient_with_incorrect_key():
     SEND_GRID_API_KEY_INCORRECT=os.environ.get("SENDGRID_API_KEY_INCORRECT","")
     COMPLETE_KEY="Bearer "+SEND_GRID_API_KEY_INCORRECT
