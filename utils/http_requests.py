@@ -6,7 +6,7 @@ Creation Date: 12/11/2023
 """
 import logging
 import requests
-import utility_helpers
+from utils.utility_helpers import *
 
 
 def invoke_get_request(service_name,end_point,headers=None,is_secured=True):
@@ -19,7 +19,7 @@ def invoke_get_request(service_name,end_point,headers=None,is_secured=True):
     headers : header like Authorisation etc, if any
     is_secured (boolean): Parameter to set if we want to invoke http or https
     """
-    generated_url=utility_helpers.generate_url_for_request(service_name,end_point,is_secured)
+    generated_url=generate_url_for_request(service_name,end_point,is_secured)
     response=requests.get(generated_url,headers=headers)
     return response
 
@@ -35,8 +35,8 @@ def invoke_post_request(service_name, end_point, body, headers=None,is_secured=T
     headers : header like Authorisation etc, if any
     is_secured (boolean): Parameter to set if we want to invoke http or https
     """
-    generated_url = utility_helpers.generate_url_for_request(service_name, end_point,is_secured)
-    if not utility_helpers.is_valid_json(body):
+    generated_url = generate_url_for_request(service_name, end_point,is_secured)
+    if not is_valid_json(body):
         raise ValueError("Provided body is not a valid JSON")
     response=requests.post(generated_url,headers=headers,data=body)
     return response

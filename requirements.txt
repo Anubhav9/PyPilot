@@ -1,2 +1,5 @@
 requests
 mysql-connector-python
+allure-pytest
+pytest
+boto3

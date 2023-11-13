@@ -51,7 +51,7 @@ def execute_query(sql_query,params=None):
 env=os.environ.get("ENV","local")
 if env=="local":
     try:
-        with open("../databases/database_config_local.json", 'r') as file:
+        with open("databases/database_config_local.json", 'r') as file:
             file_content=file.read()
             file_content=file_content.replace("{SENDGRID_DATABASE_PASSWORD}",os.environ.get("SENDGRAID_DATABASE_PASSWORD"))
             dbconfig_global=json.load(file_content)

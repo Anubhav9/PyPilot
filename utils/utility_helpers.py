@@ -6,7 +6,7 @@ Creation Date: 12/11/2023
 """
 
 import json
-from utility_constants import *
+from utils.utility_constants import *
 
 def generate_url_for_request(service_name,end_point,is_secured_protocol):
     """

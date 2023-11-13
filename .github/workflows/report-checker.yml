@@ -1,0 +1,53 @@
+name: PyTest and Allure Report
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Install Allure Commandline
+      run: |
+        brew install allure
+
+    - name: Clear Allure and HTML Report Directories
+      run: |
+        rm -rf reports/allure/*
+        rm -rf reports/html/*
+
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
+    - name: Run PyTest
+      run: pytest --alluredir=reports/allure
+      continue-on-error: true
+
+    - name: Generate Allure Report
+      run: allure generate reports/allure -o reports/html
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+
+    - name: Upload to S3
+      run: |
+        TIMESTAMP=$(date +%Y%m%d%H%M%S)
+        aws s3 cp reports/html s3://pypilot/${TIMESTAMP}/ --recursive --acl public-read
+        
+        
