@@ -24,6 +24,10 @@ jobs:
         rm -rf reports/allure/*
         rm -rf reports/html/*
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
+
     - name: Run PyTest
       run: |
         pytest --alluredir=reports/allure
